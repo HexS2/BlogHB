@@ -20,3 +20,4 @@ $db->query('CREATE TABLE IF NOT EXISTS user(id INT PRIMARY KEY NOT NULL AUTO_INC
 $db->query('CREATE TABLE IF NOT EXISTS article(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, title VARCHAR(255), content TEXT) ');
 
 $db->close();
+ 

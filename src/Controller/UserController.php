@@ -57,7 +57,6 @@ class UserController
             }
         }
 
-
         require_once 'src/View/User/create.php';
         return;
     }

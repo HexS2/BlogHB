@@ -10,7 +10,6 @@ namespace App\Repository;
 
 
 use App\Model\Article;
-use App\Model\User;
 
 class ArticleRepository extends Repository implements IRepository
 {
@@ -25,10 +24,10 @@ class ArticleRepository extends Repository implements IRepository
     }
 
     /**
-     * Find user
+     * Find article
      *
      * @param string $request
-     * @return User|null
+     * @return Article|null
      * @throws \Exception
      */
     public function getResult(string $request = ''): ?Article
@@ -37,17 +36,20 @@ class ArticleRepository extends Repository implements IRepository
         $result = parent::getResult($request);
 
         if ($result) {
-          $article = new Article($result['id'],$result['title'],$result['content']);
+            $article = new Article();
+            $article->setId($result['id'])
+                ->setTitle($result['title'])
+                ->setContent($result['content']);
         }
 
         return $article;
     }
 
     /**
-     * Find users
+     * Find articles
      *
      * @param string $request
-     * @return User[]
+     * @return Article[]
      * @throws \Exception
      */
     public function getResults(string $request = ''): array
@@ -57,7 +59,10 @@ class ArticleRepository extends Repository implements IRepository
 
         if ($results) {
             foreach ($results as $result) {
-                $article = new Article($result['id'],$result['title'],$result['content']);
+                $article = new Article();
+                $article->setId($result['id'])
+                    ->setTitle($result['title'])
+                    ->setContent($result['content']);
                 $articles[] = $article;
             }
         }
@@ -66,7 +71,7 @@ class ArticleRepository extends Repository implements IRepository
     }
 
     /**
-     * Insert user
+     * Insert article
      *
      * @param Article $article
      * @return mixed
@@ -75,14 +80,14 @@ class ArticleRepository extends Repository implements IRepository
     public function insert($article)
     {
         if (!$article instanceof Article) {
-            throw new \Exception('You can save only article');
+            throw new \Exception('You can save only articles');
         }
-        $request = "(title, content) VALUES ('" . $article ->getTitle() . "','" . $article->getContent() . "')";
+        $request = "(title, content) VALUES ('" . $article->getTitle() . "','" . $article->getContent() . "')";
         return parent::insert($request);
     }
 
     /**
-     * Update user
+     * Update article
      *
      * @param Article $article
      * @throws \Exception
@@ -90,22 +95,22 @@ class ArticleRepository extends Repository implements IRepository
     public function update($article)
     {
         if (!$article instanceof Article) {
-            throw new \Exception('You can save only article');
+            throw new \Exception('You can save only articles');
         }
         $request = "SET title = '" . $article->getTitle() . "', content = '" . $article->getContent() . "' WHERE id = " . $article->getId() . " ";
         parent::update($request);
     }
 
     /**
-     * Delete user
+     * Delete article
      *
-     * @param User $user
+     * @param Article $article
      * @throws \Exception
      */
     public function delete($article)
     {
         if (!$article instanceof Article) {
-            throw new \Exception('You can save only users');
+            throw new \Exception('You can save only articles');
         }
         $request = "WHERE id = " . $article->getId();
         parent::delete($request);

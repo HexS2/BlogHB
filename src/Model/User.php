@@ -15,20 +15,6 @@ class User
     private $firstName;
     private $lastName;
 
-    /**
-     * User constructor.
-     * @param $id
-     * @param $firstName
-     * @param $lastName
-     */
-    public function __construct($id, $firstName, $lastName)
-    {
-        $this->id = $id;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-    }
-
-
     public function getId()
     {
         return $this->id;

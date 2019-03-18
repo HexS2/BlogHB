@@ -1,82 +1,67 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: HB
- * Date: 18/03/2019
- * Time: 10:50
- */
 
 namespace App\Model;
 
-
 class Article
 {
-    /*** @var */
+    /** @var int $id */
     private $id;
-    private $content;
+    /** @var string $title */
     private $title;
+    /** @var string $content */
+    private $content;
 
     /**
-     * Article constructor.
-     * @param $id
-     * @param $content
-     * @param $title
+     * @return int
      */
-    public function __construct($id, $content, $title)
-    {
-        $this->id = $id;
-        $this->content = $content;
-        $this->title = $title;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
+     * @return Article
      */
-    public function setId($id): void
+    public function setId(int $id): Article
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param mixed $content
-     */
-    public function setContent($content): void
-    {
-        $this->content = $content;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
+     * @return Article
      */
-    public function setTitle($title): void
+    public function setTitle(string $title): Article
     {
         $this->title = $title;
+        return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getContent(): string
+    {
+        return $this->content;
+    }
 
-
+    /**
+     * @param string $content
+     * @return Article
+     */
+    public function setContent(string $content): Article
+    {
+        $this->content = $content;
+        return $this;
+    }
 }
